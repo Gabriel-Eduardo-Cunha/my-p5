@@ -2,6 +2,7 @@
   "name": "my-p5",
   "projects": [
     "cube_challenge",
-    "mandelbrot_set"
+    "mandelbrot_set",
+    "polar-perlin-noise-loop"
   ]
 }

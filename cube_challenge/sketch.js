@@ -15,7 +15,7 @@ function preload() {
 function setup() {
 	createCanvas(windowWidth, 200);
 	block1 = new Block(100, 20, 1, 0, 0)
-	block2 = new Block(200, 150, pow(100, digits - 1), -2 / timeSteps, block1.width)
+	block2 = new Block(200, 150, pow(100, digits - 1), -1 / timeSteps, block1.width)
 	countDiv = createDiv(count)
 	countDiv.style('font-size', '120px')
 	getAudioContext().resume();
