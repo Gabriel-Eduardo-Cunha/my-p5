@@ -1,0 +1,7 @@
+{
+  "name": "my-p5",
+  "projects": [
+    "cube_challenge",
+    "mandelbrot_set"
+  ]
+}
