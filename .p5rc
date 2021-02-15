@@ -3,6 +3,7 @@
   "projects": [
     "cube_challenge",
     "mandelbrot_set",
-    "polar-perlin-noise-loop"
+    "polar-perlin-noise-loop",
+    "game-of-life"
   ]
 }

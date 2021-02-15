@@ -1,14 +1,12 @@
 let coordTopLeft = [-2, 2]
 let coordBottomRight = [2, -2]
-let canvasSize = [600, 600]
 let zoom = .05
 let iterations = 100
 
 function setup() {
-	createCanvas(...canvasSize);
+	createCanvas(600, 600);
 	pixelDensity(1);
 	loadPixels();
-	draw();
 }
 
 async function draw() {
