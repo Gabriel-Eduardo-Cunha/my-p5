@@ -4,6 +4,8 @@
     "cube_challenge",
     "mandelbrot_set",
     "polar-perlin-noise-loop",
-    "game-of-life"
+    "game-of-life",
+    "quadtree",
+    "qTree-performance"
   ]
 }
