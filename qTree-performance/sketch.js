@@ -1,10 +1,10 @@
 const particles = []
-const numParticles = 100
+const numParticles = 1000
 let qTree
 let screenBoundary
 
 function setup() {
-	createCanvas(1200, 600);
+	createCanvas(windowWidth, windowHeight);
 	screenBoundary = new Rectangle(width/2, height/2, width, height)
 	for (let i = 0; i < numParticles; i++) {
 		particles.push(new Particle(random(width), random(height), random(2, 4), random(1, 4)))
@@ -77,7 +77,7 @@ class Particle extends Point {
 	render() {
 		noStroke()
 		if(this.highlight) {
-			fill(120 + random(this.highlightCount), 120 + random(this.highlightCount), 120 + random(this.highlightCount))
+			fill(180 + random(this.highlightCount), 0 + random(this.highlightCount), 0 + random(this.highlightCount))
 		} else {
 			fill(100)
 		}
