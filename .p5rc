@@ -6,6 +6,9 @@
     "polar-perlin-noise-loop",
     "game-of-life",
     "quadtree",
-    "qTree-performance"
+    "qTree-performance",
+    "trigonometry-polar-coordinates",
+    "harmonic-motion",
+    "pendulum"
   ]
 }
