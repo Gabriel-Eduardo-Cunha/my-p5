@@ -1,7 +1,8 @@
 const particles = []
-const numParticles = 1000
+const numParticles = 500
 let qTree
 let screenBoundary
+const mousePullForce = 2
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -13,7 +14,7 @@ function setup() {
 }
 
 function refreshQtree() {
-	qTree = new QuadTree(screenBoundary, 4)
+	qTree = new QuadTree(screenBoundary, numParticles/20)
 	particles.forEach(particle => {
 		qTree.insert(particle)
 	})
@@ -34,15 +35,48 @@ function draw() {
 		nearParticles.forEach(p2 => {
 			if(p1 !== p2 && p1.intersects(p2)) {
 				p1.setHighlight(true)
+				p1.x += random(-8, 8)
+				p1.y += random(-8, 8)
 			}
 		})
 	})
 	if(mouseIsPressed) {
-		let particleBoundary = new Rectangle(mouseX, mouseY, 25, 25)
+		let particleBoundary = new Rectangle(mouseX, mouseY, windowWidth, windowHeight)
 		let nearParticles = qTree.query(particleBoundary)
-		let mousePoint = new Point(mouseX, mouseY)
-		nearParticles.forEach(p => p.moveTo(mousePoint, 4))
+		const [x1, y1] = [mouseX, mouseY]
+		translate(x1, y1)
+		nearParticles.forEach(p => {
+			const [x2, y2] = [p.x, p.y]
+			const r = distanceBetweenPoints(x1, y1, x2, y2)
+			let a = angleBetweenPoints(x1, y1, x2, y2)
+			let x = (r) * cos(a) * (r/r**2) * mousePullForce
+			let y = (r) * sin(a) * (r/r**2) * mousePullForce
+			p.x += x
+			p.y += y
+		})
 	}
+}
+
+function distanceBetweenPoints(x1, y1, x2, y2) {
+	const a = Math.abs(x1 - x2)
+	const b = Math.abs(y1 - y2)
+	return Math.sqrt((a*a) + (b*b))
+}
+
+function angleBetweenPoints(x1, y1, x2, y2) {
+	const hip = distanceBetweenPoints(x1, y1, x2, y2)
+	const co = Math.abs(y1 - y2) 
+	const a = Math.asin(co / hip);
+	if(x1 < x2) {
+		if(y1 < y2) {
+			return a + Math.PI
+		}
+		return Math.PI - a
+	}
+	if(y1 < y2) {
+		return Math.PI * 2 - a
+	}
+	return a
 }
 
 
@@ -82,5 +116,6 @@ class Particle extends Point {
 			fill(100)
 		}
 		ellipse(this.x, this.y, this.r * 2)
+		this.highlightCount *= .99
 	}
 }
