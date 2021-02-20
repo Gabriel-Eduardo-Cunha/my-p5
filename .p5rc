@@ -9,6 +9,7 @@
     "qTree-performance",
     "trigonometry-polar-coordinates",
     "harmonic-motion",
-    "pendulum"
+    "pendulum",
+    "raycasting"
   ]
 }
